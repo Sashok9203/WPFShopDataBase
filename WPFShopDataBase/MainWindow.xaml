@@ -3,10 +3,57 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:vms="clr-namespace:WPFShopDataBase.Models"
+        d:DataContext="{d:DesignInstance Type = vms:ShopDBModel}"
         xmlns:local="clr-namespace:WPFShopDataBase"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    
+    <Window.DataContext>
+        <vms:ShopDBModel/>
+    </Window.DataContext>
+   
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <DataGrid Margin="5" Name="ShopsGrid" Grid.ColumnSpan="2" AutoGenerateColumns="False" ItemsSource="{Binding Shops,Mode=OneTime}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Shop" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Country" Binding="{Binding City.Country.Name}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="City" Binding="{Binding City.Name}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="*" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Header="Parking"  Binding="{Binding ParkingArea}" Width="*" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Margin="5" Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding Products,UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Discount" Binding="{Binding Discount}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Category" Binding="{Binding Category.Name}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="*" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Header="IsLnStock"  Binding="{Binding IsLnStock}" Width="*" IsReadOnly="True"/>
+            </DataGrid.Columns>  
+        </DataGrid>
+
+        <DataGrid Margin="5" Grid.Row="1" Grid.Column="2" AutoGenerateColumns="False" ItemsSource="{Binding Workers,UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Worker" Binding="{Binding FullName}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Salary" Binding="{Binding Salary}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="PhoneNumber" Binding="{Binding PhoneNumber}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Position" Binding="{Binding Position.Name}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Position" Binding="{Binding Position.Name}" Width="*" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>
