@@ -11,12 +11,10 @@ namespace WPFShopDataBase.Data
         {
             if (Database.EnsureCreated())
             {
-                Products.AddRange(Data.Products);
                 foreach (var item in Shops)
                 {
-                    for (int i = 0; i < 17; i++)
-                        item.Products.Add(Data.Products[new Random().Next(0, 29)]);
-
+                    for (int i = 0; i < 28; i++)
+                        item.Products.Add(Data.Products[new Random().Next(0, 35)]);
                 }
             }
             SaveChanges();
@@ -38,6 +36,8 @@ namespace WPFShopDataBase.Data
             modelBuilder.Entity<Category>().HasData(Data.Categories);
             modelBuilder.Entity<Position>().HasData(Data.Positions);
             modelBuilder.Entity<Worker>().HasData(Data.Workers);
+            modelBuilder.Entity<Product>().HasData(Data.Products);
+
         }
 
         public DbSet<City> Cities { get; set; }
