@@ -7,7 +7,7 @@
         d:DataContext="{d:DesignInstance Type = vms:ShopDBModel}"
         xmlns:local="clr-namespace:WPFShopDataBase"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="1000">
     
     <Window.DataContext>
         <vms:ShopDBModel/>
@@ -23,7 +23,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <DataGrid Margin="5" Name="ShopsGrid" Grid.ColumnSpan="2" AutoGenerateColumns="False" ItemsSource="{Binding Shops,Mode=OneTime}">
+        <DataGrid Margin="5"  Grid.ColumnSpan="2" AutoGenerateColumns="False" ItemsSource="{Binding Shops,Mode=OneTime}" SelectedItem="{Binding SelectedShop,UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Shop" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Country" Binding="{Binding City.Country.Name}" Width="*" IsReadOnly="True"/>
@@ -51,7 +51,7 @@
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Header="PhoneNumber" Binding="{Binding PhoneNumber}" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Position" Binding="{Binding Position.Name}" Width="*" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Position" Binding="{Binding Position.Name}" Width="*" IsReadOnly="True"/>
+              
             </DataGrid.Columns>
         </DataGrid>
 
