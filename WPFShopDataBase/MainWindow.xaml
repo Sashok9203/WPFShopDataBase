@@ -7,7 +7,7 @@
         d:DataContext="{d:DesignInstance Type = vms:ShopDBModel}"
         xmlns:local="clr-namespace:WPFShopDataBase"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1000">
+        Title="ShopsDB" Height="450" Width="1000">
     
     <Window.DataContext>
         <vms:ShopDBModel/>
